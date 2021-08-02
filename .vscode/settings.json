@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "xstring": "cpp",
+    "algorithm": "cpp"
+  },
+  "git.ignoreLimitWarning": true,
+  "C_Cpp_Runner.cCompilerPath": "C:\\MinGW\\bin\\gcc.exe",
+  "C_Cpp_Runner.cppCompilerPath": "C:\\MinGW\\bin\\g++.exe"
+}
