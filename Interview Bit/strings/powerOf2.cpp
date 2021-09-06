@@ -29,20 +29,27 @@
 #define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
+int power(string A){
+    int n=A.length();
+    int num=A[0]-'0';
 
-    f(i,0,n)a[arr[i]]++;
+    for(int i=1;i<n;i++){
+        num=(num*10)+(A[i]-'0');
+    }
 
-    return a[1];
+    if(num==1) return 0;
 
-}          
+    int power=log(num)/log(2);
+
+    if(pow(2,power)==num) return 1;
+
+    return 0;
+    
+    }          
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

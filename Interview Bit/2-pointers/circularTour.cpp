@@ -28,21 +28,33 @@
 #define ff first
 #define ss second
 using namespace std;
+
+struct petrolPump{
+    int petrol;
+    int distance;
+};
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
-
-    f(i,0,n)a[arr[i]]++;
-
-    return a[1];
-
-}          
+ int tour(petrolPump p[],int n)
+    {
+       //Your code here
+        int start=0,deficit=0;
+   int capacity=0;
+   
+   for(int i=0;i<n;i++)
+   {
+       capacity+=p[i].petrol-p[i].distance;
+       if(capacity<0){
+           start=i+1;
+           deficit+=capacity;
+           capacity=0;
+       }
+   }
+   return(capacity+deficit>0)?start:-1;
+    }          
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

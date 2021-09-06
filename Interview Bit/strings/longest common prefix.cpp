@@ -29,20 +29,24 @@
 #define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
-
-    f(i,0,n)a[arr[i]]++;
-
-    return a[1];
-
-}          
           
+string longestCommonPrefix(vector<string> &A) {
+    int n=A.size();
+    if(n==0)    return "";
+    
+    sort(A.begin(),A.end());
+    
+    string res;
+    for(int i=0;i<A[0].size();i++){
+        if(A[0][i]!=A[n-1][i]) return res;
+
+        res+=A[0][i];
+    }
+    return res;
+}         
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

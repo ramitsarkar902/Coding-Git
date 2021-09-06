@@ -29,20 +29,32 @@
 #define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
+int closestToZero(int arr[], int n)
+        {
+            // your code here 
+            
+            
+            if(n == 1) return 2*arr[0];
+		sort(arr, arr+n);
+		if(arr[0] >= 0) return arr[0]+arr[1];
+		if(arr[n-1] < 0) return arr[n-1]+arr[n-2];
 
-    f(i,0,n)a[arr[i]]++;
-
-    return a[1];
-
-}          
+		int  l = 0, r = n-1;
+		int sum = INT_MAX, currSum;
+		while(l < r){
+		    currSum = arr[l]+arr[r];
+			if(abs(sum) > abs(currSum)) sum = currSum;
+			else if(abs(sum) == abs(currSum)) sum = max(sum, currSum);
+			if(currSum == 0) return 0;
+			if (currSum > 0) r--;
+			else l++;
+		}
+		return sum;
+        }          
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

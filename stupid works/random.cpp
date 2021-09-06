@@ -20,29 +20,33 @@
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a > b ? a : b
 #define f(i,a,b) for(int i=a;i<b;i++)
-#define fm(i,a,b) for(int i=a;i>b;i--)
 #define pii pair<int, int>
-#define vi vector<int>
-#define pqmax priority_queue<int, vi>
-#define pqmin priority_queue <int, vector<int>, greater<int>>
-#define ff first
-#define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
 
-    f(i,0,n)a[arr[i]]++;
+struct Node {
+int data;
+Node* left;
+Node* right;
+Node(int val){
+data=val;
+left=NULL;
+right=NULL;
+}
+};          
 
-    return a[1];
+void getverticalOrder(Node* root, int hdis, map<int, vector<int>> &v){  
+
+        if(root== NULL) return;
+
+        v[hdis].push_back(root->data);
+        getverticalOrder(root->left, hdis-1, v);
+        getverticalOrder(root->right, hdis+1, v);
 
 }          
           
-          
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

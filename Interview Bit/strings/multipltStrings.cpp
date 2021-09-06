@@ -29,20 +29,29 @@
 #define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
-
-    f(i,0,n)a[arr[i]]++;
-
-    return a[1];
-
-}          
+string multiply(string A, string B) {
+     int m = A.size(), n = B.size();
+    string ans(m + n, '0');
+    
+    for(int i = m - 1; i >= 0; --i){
+        for(int j = n - 1; j >= 0; --j){
+            int sum = (A[i] - '0') * (B[j] - '0') + (ans[i + j + 1] - '0');
+            ans[i + j + 1] = (sum % 10) + '0';
+            ans[i + j] += (sum / 10);
+        }
+    }
+    
+    for(int i = 0; i < m + n; ++i){
+        if(ans[i] != '0')
+            return ans.substr(i);
+    }
+    return "0";
+}
+         
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

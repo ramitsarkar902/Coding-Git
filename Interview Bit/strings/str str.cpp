@@ -29,20 +29,32 @@
 #define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
-
-    f(i,0,n)a[arr[i]]++;
-
-    return a[1];
-
+string substr(string s, int st, int len){
+    string res;
+    for(int i = 0; i < len; i++)
+        res += s[st + i];
+    
+    return res;
+}
+int strStr(const string s, const string x) {
+   int xle = x.length();
+    int sle = s.length();
+    
+    if(s == x || xle == 0)
+        return 0;
+        
+    for(int i = 0; i < sle; i++){
+        if(s[i] == x[0]){
+            if(substr(s, i, xle) == x)
+                return i;
+        }
+    }
+        return -1;
 }          
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

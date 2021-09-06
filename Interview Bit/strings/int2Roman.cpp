@@ -29,20 +29,27 @@
 #define ss second
 using namespace std;
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
-
-    f(i,0,n)a[arr[i]]++;
-
-    return a[1];
-
-}          
+string intToRoman(int number) {
+    string ans="";
+     int num[] = {1,4,5,9,10,40,50,90,100,400,500,900,1000};
+    string sym[] = {"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"};
+    int i=12;   
+    while(number>0)
+    {
+      int div = number/num[i];
+      number = number%num[i];
+      while(div--)
+      {
+        ans+=sym[i];
+      }
+      i--;
+    }
+    return ans;
+}         
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
+          
           
           
 return 0;

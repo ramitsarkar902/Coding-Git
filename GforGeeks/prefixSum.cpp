@@ -28,22 +28,39 @@
 #define ff first
 #define ss second
 using namespace std;
+
+
+bool find(int *arr,int n,int b){
+    for(int i=0;i<n;i++){
+
+        if(b==arr[i])return true;
+
+    }
+    return false;
+}
           
-int solve(int *arr,int n){
-    int a[n];
-    f(i,0,n)a[i]=0;
+//using prefix sum 
 
-    f(i,0,n)a[arr[i]]++;
 
-    return a[1];
+int solve(int N){
+   double a;
+int n=2,c=0;
 
-}          
+while(2*N - n*n + n > 0)
+{
+if( (2*N + n - n*n) % (2*n) == 0)
+c++;
+
+n+=1;
+}
+
+return c;
+}
           
           
 int main(){
-          int arr[9]={1,1,1,1,5,6,8,8,4};
-          cout<<solve(arr,9);
           
+          cout<<solve(15);
           
 return 0;
 }
