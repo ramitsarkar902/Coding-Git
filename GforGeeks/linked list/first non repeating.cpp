@@ -22,7 +22,8 @@
 #define f(i,a,b) for(int i=a;i<b;i++)
 #define fm(i,a,b) for(int i=a;i>b;i--)
 #define pii pair<int, int>
-#define vi vector<int>
+#define v(x) vector<x>
+#define sortv(vec) sort(vec.begin(), vec.end())
 #define pqmax priority_queue<int, vi>
 #define pqmin priority_queue <int, vector<int>, greater<int>>
 #define ff first
@@ -32,28 +33,49 @@ using namespace std;
           
           
           
-int main(){
-    int t;cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        if(n%2 == 0){
-            f(i,0,n){
-                f(j,0,n){
-                    cout<<-1<<" ";
-                }
-                cout<<endl;
-            }
-        }else{
-            f(i,0,n){
-                f(j,0,n){
-                    if(i==j) cout<<1<<" ";
-                    else cout<<-1<<" ";
-                }
-                cout<<endl;
-            }
-        }
+          
+          
+//for linked list          
+struct Node
+{
+int data;
+struct Node *next;
+ Node(int x)
+{
+data = x;
+ next = NULL;
+ }
+};
+          
+          
+          
+          
+          
+string FirstNonRepeating(string A){
+		    // Code here
+		     deque<char>v;
+    int x[26]={0};
+    for(int i=0;i<A.length();++i)
+    {
+        x[A[i]-'a']++;
+        if(x[A[i]-'a']==1)
+        v.push_back(A[i]);
+        while(v.size()!=0 && x[v.front()-'a']!=1)
+        v.pop_front();
+        if(v.size()==0)
+        A[i]='#';
+        else A[i]=v.front();
     }
+    return A;
+		}
+          
+          
+          
+          
+          
+          
+          
+int main(){
           
           
           
