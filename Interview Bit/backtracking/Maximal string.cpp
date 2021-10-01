@@ -1,0 +1,83 @@
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <climits>
+#include <deque>
+#include <iostream>
+#include <list>
+#include <limits>
+#include <map>
+#include <queue>
+#include <set>
+#include <stack>
+#include <vector>
+#include <string.h>
+#include <algorithm> 
+
+#define ll long long
+#define mod 1000000007 //10^9+7
+              
+#define MIN(a, b) a < b ? a : b
+#define MAX(a, b) a > b ? a : b
+#define f(i,a,b) for(int i=a;i<b;i++)
+#define fm(i,a,b) for(int i=a;i>b;i--)
+#define pii pair<int, int>
+#define v(x) vector<x>
+#define sortv(vec) sort(vec.begin(), vec.end())
+#define pqmax priority_queue<int, vi>
+#define pqmin priority_queue <int, vector<int>, greater<int>>
+#define ff first
+#define ss second
+using namespace std;
+          
+          
+          
+          
+          
+          
+//for linked list          
+struct Node
+{
+int data;
+struct Node *next;
+ Node(int x)
+{
+data = x;
+ next = NULL;
+ }
+};
+          
+string ans="";
+void find(string a,int k){
+    if(k==0){
+        if(ans<a) ans=a;
+        return;
+    }
+    for(int i=0;i<a.length();i++){
+        for(int j=i+1;j<a.length();j++){
+            swap(a[i],a[j]);
+            find(a,k-1);
+            swap(a[i],a[j]);
+        }
+    }
+}
+string solve(string A, int B) {
+    ans="";
+    find(A,B);
+    return ans;
+}
+          
+          
+          
+          
+          
+          
+          
+          
+          
+int main(){
+          
+          
+          
+return 0;
+}
