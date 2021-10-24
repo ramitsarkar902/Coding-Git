@@ -50,32 +50,18 @@ data = x;
           
           
           
-v(v(int)) solve(v(int) &a,int b){
-    vector<vector<int>>ans;
-    unordered_map<int,vector<pair<int,int>>>mp;
-    for(int i=0;i<a.size();i++){
-        for(int j=i+1;j<a.size();j++){
-            int sum=a[i]+a[j];
-            int k=b-sum;//required sum
-            if(mp.find(k)!=mp.end()){
-                vector<pair<int,int>> v=mp[k];
-                for(int x=0;x<v.size();x++){
-                     if(i!=v[x].first && i!=v[x].second && j!=v[x].first && j!=v[x].second){
-                    vector<int> temp={a[i],a[j],a[v[x].first],a[v[x].second]};
-                    sort(temp.begin(),temp.end());
-                    ans.push_back(temp);
-                     }
-                }
+int solve(string a){
+    int n=a.size();
+    map<char,int>mp;
+    for(int i=0;i<n;i++)mp[a[i]]++;
+    int c=0;
+    for(auto x:mp){
+        if(x.second%2==0)continue;
 
-            }
-            mp[sum].push_back(make_pair(i,j));
-        }
+        else c++;
+        if(c>1) return false;
     }
-     sort(ans.begin(),ans.end());
-    vector<vector<int>>:: iterator it = unique(ans.begin(), ans.end());//for unique combinations only
-    ans.resize(distance(ans.begin(), it));
-    
-    return ans;
+    return true;
 }          
           
           

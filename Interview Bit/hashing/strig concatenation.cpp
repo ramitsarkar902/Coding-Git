@@ -50,33 +50,38 @@ data = x;
           
           
           
-v(v(int)) solve(v(int) &a,int b){
-    vector<vector<int>>ans;
-    unordered_map<int,vector<pair<int,int>>>mp;
-    for(int i=0;i<a.size();i++){
-        for(int j=i+1;j<a.size();j++){
-            int sum=a[i]+a[j];
-            int k=b-sum;//required sum
-            if(mp.find(k)!=mp.end()){
-                vector<pair<int,int>> v=mp[k];
-                for(int x=0;x<v.size();x++){
-                     if(i!=v[x].first && i!=v[x].second && j!=v[x].first && j!=v[x].second){
-                    vector<int> temp={a[i],a[j],a[v[x].first],a[v[x].second]};
-                    sort(temp.begin(),temp.end());
-                    ans.push_back(temp);
-                     }
-                }
+vector<int> solve(string a, vector<string>&arr){/* S: "barfoothefoobarman"
+                                                    L: ["foo", "bar"]
+                                                    You should return the indices: [0,9]. */
+    int word_size=arr[0].size();//3
+    int word_count=arr.size();//2
 
-            }
-            mp[sum].push_back(make_pair(i,j));
+    int n=word_size*word_count;//6
+    vector<int>res;
+    if(n>a.size())return res;
+
+    unordered_map<string,int>mp;
+    for(int i=0;i<word_count;i++)mp[arr[i]]++;
+
+    for(int i=0;i<a.size()-n+1;i++){
+        unordered_map<string,int>temp(mp);
+
+        int j=i,c=word_count;
+
+        while(j<i+n){
+                string st = a.substr(j, word_size);
+
+                if(mp.find(st)==mp.end()||temp[st]==0)break;
+                else{
+                    temp[st]--;
+                    c--;
+                }
+                j+=word_size;
         }
+        if(c==0)res.push_back(i);
     }
-     sort(ans.begin(),ans.end());
-    vector<vector<int>>:: iterator it = unique(ans.begin(), ans.end());//for unique combinations only
-    ans.resize(distance(ans.begin(), it));
-    
-    return ans;
-}          
+    return res;
+}         
           
           
           

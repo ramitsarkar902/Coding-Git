@@ -50,33 +50,24 @@ data = x;
           
           
           
-v(v(int)) solve(v(int) &a,int b){
-    vector<vector<int>>ans;
-    unordered_map<int,vector<pair<int,int>>>mp;
-    for(int i=0;i<a.size();i++){
-        for(int j=i+1;j<a.size();j++){
-            int sum=a[i]+a[j];
-            int k=b-sum;//required sum
-            if(mp.find(k)!=mp.end()){
-                vector<pair<int,int>> v=mp[k];
-                for(int x=0;x<v.size();x++){
-                     if(i!=v[x].first && i!=v[x].second && j!=v[x].first && j!=v[x].second){
-                    vector<int> temp={a[i],a[j],a[v[x].first],a[v[x].second]};
-                    sort(temp.begin(),temp.end());
-                    ans.push_back(temp);
-                     }
-                }
-
-            }
-            mp[sum].push_back(make_pair(i,j));
-        }
+int solve(int* a,int n,int b){
+    unordered_map<int, int>mp;int sum=0,c=0;//4 3 2 3 4     // 0 1 0 1 0  //0 1 1 2 0
+    for(int i = 0; i<n; i++){
+        if(a[i] % 2 == 0) a[i] = 0;
+        else a[i] = 1; // odd nos become 1. Now subarrays with sum = B should be found
     }
-     sort(ans.begin(),ans.end());
-    vector<vector<int>>:: iterator it = unique(ans.begin(), ans.end());//for unique combinations only
-    ans.resize(distance(ans.begin(), it));
-    
-    return ans;
-}          
+    for(int i=0;i<n;i++){
+        sum+=a[i];
+        if(sum==b)c++;
+
+        if(mp.find(sum-b)!=mp.end())c+=mp[sum-b];
+
+         mp[sum]++;
+    }
+
+    return c;
+
+}       
           
           
           

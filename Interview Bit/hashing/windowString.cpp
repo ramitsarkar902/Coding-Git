@@ -50,33 +50,39 @@ data = x;
           
           
           
-v(v(int)) solve(v(int) &a,int b){
-    vector<vector<int>>ans;
-    unordered_map<int,vector<pair<int,int>>>mp;
-    for(int i=0;i<a.size();i++){
-        for(int j=i+1;j<a.size();j++){
-            int sum=a[i]+a[j];
-            int k=b-sum;//required sum
-            if(mp.find(k)!=mp.end()){
-                vector<pair<int,int>> v=mp[k];
-                for(int x=0;x<v.size();x++){
-                     if(i!=v[x].first && i!=v[x].second && j!=v[x].first && j!=v[x].second){
-                    vector<int> temp={a[i],a[j],a[v[x].first],a[v[x].second]};
-                    sort(temp.begin(),temp.end());
-                    ans.push_back(temp);
-                     }
+string solve(string a, string b){
+    unordered_map<char,int>mp;
+    for(int i=0;i<b.size();i++)mp[b[i]]++;
+
+    int distinct =mp.size();
+    
+    int i=0,j=0;int c=distinct,ans=INT_MAX;int start=0;
+    while(j<a.size()){
+        mp[a[j]]--;
+        if(mp[a[j]]==0)c--;
+
+        if(c==0){
+            while(c==0){
+                if(ans>j+1-i){
+                    ans=min(ans,j-i+1);
+                    start=i;
                 }
 
+                mp[a[i]]++;
+                if(mp[a[i]]>0)c++;
+
+                i++;
             }
-            mp[sum].push_back(make_pair(i,j));
         }
+        j++;
     }
-     sort(ans.begin(),ans.end());
-    vector<vector<int>>:: iterator it = unique(ans.begin(), ans.end());//for unique combinations only
-    ans.resize(distance(ans.begin(), it));
-    
-    return ans;
-}          
+     if (ans != INT_MAX)
+        return a.substr(start, ans);
+    else
+        return "";
+
+
+}         
           
           
           
