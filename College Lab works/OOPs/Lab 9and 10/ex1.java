@@ -1,31 +1,87 @@
-import java.util.*;
-class A extends Thread {
-    String name;
-    A(String j){
-        name=j;
-    }
+class MyThread extends Thread {
+    boolean flag = false;
     public void run() {
-        try{    
-            for(int i = 0; i <10;i++){
-                System.out.println(name+"/t"+i);
-                if(name.equals("Thread 1"))
-                Thread.sleep(100);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        flag = true;
+        System.out.println("Flag's new Value = true.");
+    }
+}
+
+class busyWait extends Thread {
+    long start;
+    MyThread m = new MyThread();
+    busyWait(MyThread m) {
+        this.m = m;
+    }
+    public synchronized void run() {
+
+        while(!Thread.interrupted()) {
+            start = System.nanoTime();
+            if(m.flag) {
+                m.flag = false;
+                System.out.println();
+                System.out.println("Inside BusyWait 1");
+                System.out.println("Flag's New Value = false.");
+                System.out.println("Time for Busy Waiting (ns): " + (System.nanoTime()-start));
             }
-        }catch(InterruptedException e){
-            System.out.println(e.getMessage());
         }
     }
 }
 
+class busyWait2 extends Thread {
+    MyThread m = new MyThread();
+    busyWait2(MyThread m) {
+        this.m = m;
+    }
+    public synchronized void run() {
+        System.out.println("Inside BusyWait 2");
+        System.out.println("Flag's Current Value Before using wait(): " + m.flag);
+        while(!m.flag) {
+            try {
+               wait();
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+            m.flag=false;
+            System.out.println("Flag value has been set to false.");
+        }
+    }
+}
 
 public class ex1 {
-    public static void main(String[] args){
-        A t1=new A("Thread 1");
-        A t2=new A("Thread 2");
-        t1.start();
+    public static void main(String[] Args) throws InterruptedException {
+        MyThread m1 = new MyThread();
+        MyThread m2 = new MyThread();
+
+        busyWait b1 = new busyWait(m1);
+        Thread t1 = new Thread(b1);
+        Thread t2 = new Thread(m1);
         t2.start();
+        t1.start();
+
+        try {
+            Thread.sleep(300);
+        } catch(InterruptedException e) {
+            System.out.println("sleep interrupted in main()");
+        }
+
+        System.out.println();
+
+        busyWait2 b2 = new busyWait2(m2);
+        t1 = new Thread(m2);
+        t2 = new Thread(b2);
+        t2.start();
+        t1.start();
+
+        try {
+            Thread.sleep(2000);
+        } catch(InterruptedException e) {
+            System.out.println("sleep interrupted in main()");
+        }
+        
     }
-    
-
-
-}   
+}
