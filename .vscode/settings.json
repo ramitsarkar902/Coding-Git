@@ -10,11 +10,7 @@
   "C_Cpp_Runner.cppCompilerPath": "C:\\MinGW\\bin\\g++.exe",
   "C_Cpp_Runner.debuggerPath": "C:\\MinGW\\bin\\gdb.exe",
   "C_Cpp_Runner.makePath": "C:\\MinGW\\bin\\make.exe",
-  "C_Cpp_Runner.warnings": [
-    "-Wall",
-    "-Wextra",
-    "-Wpedantic"
-  ],
+  "C_Cpp_Runner.warnings": ["-Wall", "-Wextra", "-Wpedantic"],
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.includePaths": [],
   "C_Cpp_Runner.linkerArgs": [],
@@ -22,5 +18,25 @@
   "C_Cpp_Runner.cppStandard": "",
   "C_Cpp_Runner.excludeSearch": [],
   "C_Cpp_Runner.enableWarnings": true,
-  "C_Cpp_Runner.warningsAsError": false
+  "C_Cpp_Runner.warningsAsError": false,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#a7f6c5",
+    "activityBar.activeBorder": "#b38bf3",
+    "activityBar.background": "#a7f6c5",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#b38bf3",
+    "activityBarBadge.foreground": "#15202b",
+    "sash.hoverBorder": "#a7f6c5",
+    "statusBar.background": "#79f1a6",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#4bec87",
+    "statusBarItem.remoteBackground": "#79f1a6",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#79f1a6",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#79f1a699",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#79f1a6"
 }
