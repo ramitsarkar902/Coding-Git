@@ -25,7 +25,7 @@
 #define pii pair<int, int>
 #define v(x) vector<x>
 #define sortv(vec) sort(vec.begin(), vec.end())
-#define pqmax priority_queue<int, vi>
+#define pqmax priority_queue<int>
 #define pqmin priority_queue <int, vector<int>, greater<int>>
 #define ff first
 #define ss second
@@ -44,25 +44,29 @@ data = x;
  next = NULL;
  }
 };
+
+ priority_queue<int, vector<int>, greater<int>> pq;
+   /*  SeatManager(int n) {
+        for (int i = 1; i <= n; ++i) {
+            pq.push(i);
+        } */
+    
+    
+    int reserve() {
+        auto top = pq.top();
+        pq.pop();
+        return top;
+    }
+    
+    void unreserve(int seatNumber) {
+        pq.push(seatNumber);
+    }         
           
           
           
-          
-int findmod(char ara[]){
-    int sum=0,i;
-    for(i=0;ara[i];i++){
-        sum=sum*10+ara[i]-'0';
-        sum=sum%4;}
-    return sum;
-}
- 
 int main(){
-    char ara[100005];
-    gets(ara);
- 
-    int sum=findmod(ara);
-    int ans=1+pow(2,sum)+pow(3,sum)+pow(4,sum);
-    ans=ans%5;
-    printf("%d",ans);
-}
           
+          
+          
+return 0;
+}

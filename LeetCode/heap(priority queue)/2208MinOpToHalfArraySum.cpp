@@ -45,24 +45,31 @@ data = x;
  }
 };
           
+int halveArray(vector<int>& nums) {
+       priority_queue<double>pq;
+   
+    double sum=0;
+    for(auto it:nums){
+        sum+=double(it);
+        pq.push(double(it));
+    }
+    double h=sum/2;
+    int count=0;
+    while(sum>h){
+        double temp=pq.top()/2;
+        pq.pop();
+        sum-=temp;
+        pq.push(temp);
+        count++;
+    }
+    return count;
+    
+    }       
           
           
-          
-int findmod(char ara[]){
-    int sum=0,i;
-    for(i=0;ara[i];i++){
-        sum=sum*10+ara[i]-'0';
-        sum=sum%4;}
-    return sum;
-}
- 
 int main(){
-    char ara[100005];
-    gets(ara);
- 
-    int sum=findmod(ara);
-    int ans=1+pow(2,sum)+pow(3,sum)+pow(4,sum);
-    ans=ans%5;
-    printf("%d",ans);
-}
           
+          
+          
+return 0;
+}

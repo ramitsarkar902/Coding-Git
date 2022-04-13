@@ -25,7 +25,7 @@
 #define pii pair<int, int>
 #define v(x) vector<x>
 #define sortv(vec) sort(vec.begin(), vec.end())
-#define pqmax priority_queue<int, vi>
+#define pqmax priority_queue<int>
 #define pqmin priority_queue <int, vector<int>, greater<int>>
 #define ff first
 #define ss second
@@ -45,24 +45,29 @@ data = x;
  }
 };
           
+ int minStoneSum(vector<int>& piles, int k) {
+        pqmax pq;
+        for(auto i:piles){
+            pq.push(i);
+        }
+        while(k--){
+            int x=pq.top();
+            pq.pop();
+            pq.push(x-(x/2));
+        }
+        int sum=0;
+        while(!pq.empty()){
+            sum+=pq.top();
+            pq.pop();
+        }
+        return sum;
+    }
           
           
           
-int findmod(char ara[]){
-    int sum=0,i;
-    for(i=0;ara[i];i++){
-        sum=sum*10+ara[i]-'0';
-        sum=sum%4;}
-    return sum;
-}
- 
 int main(){
-    char ara[100005];
-    gets(ara);
- 
-    int sum=findmod(ara);
-    int ans=1+pow(2,sum)+pow(3,sum)+pow(4,sum);
-    ans=ans%5;
-    printf("%d",ans);
-}
           
+          
+          
+return 0;
+}

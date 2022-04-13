@@ -25,7 +25,7 @@
 #define pii pair<int, int>
 #define v(x) vector<x>
 #define sortv(vec) sort(vec.begin(), vec.end())
-#define pqmax priority_queue<int, vi>
+#define pqmax priority_queue<int>
 #define pqmin priority_queue <int, vector<int>, greater<int>>
 #define ff first
 #define ss second
@@ -45,24 +45,35 @@ data = x;
  }
 };
           
+ vector<vector<int>> generateMatrix(int n) {
+         vector<vector<int>> res(n,vector<int>(n,0));
+    int left=0,right=n-1,top=0,bottom=n-1;
+    int x=1;
+    while(x<=n*n){
+        //for the top part from left to right
+        for(int i=left;i<=right;i++)
+            res[top][i]=x++;
+        top++;
+        //for the right part from top to bottom 
+        for(int i=top;i<=bottom;i++)
+            res[i][right]=x++;
+        right--;
+        //for the bottom part from right to left fill
+        for(int i=right;i>=left;i--)
+            res[bottom][i]=x++;
+        bottom--;
+        //for the left part fill from bottom to top
+        for(int i=bottom;i>=top;i--)
+            res[i][left]=x++;
+        left++;
+    }
+    return res;
+    }         
           
           
-          
-int findmod(char ara[]){
-    int sum=0,i;
-    for(i=0;ara[i];i++){
-        sum=sum*10+ara[i]-'0';
-        sum=sum%4;}
-    return sum;
-}
- 
 int main(){
-    char ara[100005];
-    gets(ara);
- 
-    int sum=findmod(ara);
-    int ans=1+pow(2,sum)+pow(3,sum)+pow(4,sum);
-    ans=ans%5;
-    printf("%d",ans);
-}
           
+          
+          
+return 0;
+}

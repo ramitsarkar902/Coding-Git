@@ -44,25 +44,26 @@ data = x;
  next = NULL;
  }
 };
+          //for clockwise
+void rotate(vector<vector<int> > &matrix) {
+    reverse(matrix.begin(), matrix.end());
+    for (int i = 0; i < matrix.size(); ++i) {
+        for (int j = i + 1; j < matrix[i].size(); ++j)
+            swap(matrix[i][j], matrix[j][i]);
+    }
+}          
           
-          
-          
-          
-int findmod(char ara[]){
-    int sum=0,i;
-    for(i=0;ara[i];i++){
-        sum=sum*10+ara[i]-'0';
-        sum=sum%4;}
-    return sum;
+          //for anticlockwise
+          void anti_rotate(vector<vector<int> > &matrix) {
+    for (auto vi : matrix) reverse(vi.begin(), vi.end());
+    for (int i = 0; i < matrix.size(); ++i) {
+        for (int j = i + 1; j < matrix[i].size(); ++j)
+            swap(matrix[i][j], matrix[j][i]);
+    }
 }
- 
 int main(){
-    char ara[100005];
-    gets(ara);
- 
-    int sum=findmod(ara);
-    int ans=1+pow(2,sum)+pow(3,sum)+pow(4,sum);
-    ans=ans%5;
-    printf("%d",ans);
-}
           
+          
+          
+return 0;
+}

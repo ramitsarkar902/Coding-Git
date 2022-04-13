@@ -46,23 +46,33 @@ data = x;
 };
           
           
+ vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
+        int n=grid.size();
+        int m=grid[0].size();
+        int total=n*m;
+        vector<int>arr;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr.push_back(grid[i][j]);
+            }
+        }
+        k=k%total;
+        if(k==0)return grid;
+
+        int index=total-k;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                grid[i][j]=arr[index];
+                index=(index+1)%total;
+            }
+        }
+        return grid;
+
+    }       
           
-          
-int findmod(char ara[]){
-    int sum=0,i;
-    for(i=0;ara[i];i++){
-        sum=sum*10+ara[i]-'0';
-        sum=sum%4;}
-    return sum;
-}
- 
 int main(){
-    char ara[100005];
-    gets(ara);
- 
-    int sum=findmod(ara);
-    int ans=1+pow(2,sum)+pow(3,sum)+pow(4,sum);
-    ans=ans%5;
-    printf("%d",ans);
-}
           
+          
+          
+return 0;
+}
